@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px; /* Increased padding */
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; /* Adjusted justify-content */
+            gap: 20px; /* Gap between cards */
+        }
+        .card {
+            width: calc(50% - 20px); /* Adjusted card width for two columns with gap */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card img {
+            width: 100%; /* Make the image fill the card width */
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image horizontally */
+            max-width: 200px; /* Set a fixed width for all images */
+            max-height: 200px; /* Set a fixed height for all images */
+        }
+        .card-title {
+            padding: 10px;
+            text-align: center;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <h1>Matching Images of input image</h1>
+    <h2>Input Image:</h2>
+    <img class="card" src="data:image/png;base64,{{ input_image }}" alt="Input Image">
+    <h2>Similar Images:</h2>
+    <div class="container">
+        {% if similar_images %}
+            {% for image_base64, filename in similar_images %}
+                <div class="card">
+                    <img src="data:image/png;base64,{{ image_base64 }}" alt="Similar Image">
+                    <div class="card-title">Filename: {{ filename }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No similar images found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

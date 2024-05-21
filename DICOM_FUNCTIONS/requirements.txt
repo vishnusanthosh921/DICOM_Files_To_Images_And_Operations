@@ -1,0 +1,6 @@
+Flask
+pydicom
+Pillow
+opencv-python
+numpy
+scikit-image

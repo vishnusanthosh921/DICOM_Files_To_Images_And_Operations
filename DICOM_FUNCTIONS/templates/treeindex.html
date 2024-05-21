@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Similar DICOM Images</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Input Image</h1>
+    <img src="data:image/png;base64,{{ input_image }}" alt="Input Image">
+
+    <h1>Similar Images</h1>
+    {% for dicom_image, similarity in similar_images %}
+        <h2>Similarity: {{ similarity }}</h2>
+        <img src="data:image/png;base64,{{ dicom_image }}" alt="Similar Image">
+    {% endfor %}
+</body>
+</html>
